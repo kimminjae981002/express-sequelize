@@ -1,0 +1,13 @@
+version: "3" # 버전이 3이다.
+services: # 서비스에 db컨테이너가 생성된다.
+  db: # 데이터베이스를 위한 컨테이너
+    image: postgres:latest # postgres 이미지를 받아온다.
+    container_name: postgres_sequelize_container # 도커 허브에 컨테이너 이름명
+    restart: always # 서비스가 다운이 되면 다시 재실행
+    ports:
+      - "5432:5432" # 컨테이너 안의 포트가 5432이면 밖에서도 접근할 때 5432
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+    volumes:
+      - ./data:/var/lib/postgresql/data # 컨테이너가 사라져도 데이터를 사용할 수 있게
